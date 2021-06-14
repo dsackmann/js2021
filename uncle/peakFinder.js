@@ -51,6 +51,11 @@ function peakFinder(searchSpace, startingIdx = 0, longestKnownPeak = 0) {
 		return 0;
 	}
 
+	if (step1 === step2) {
+		console.log('Ended at plateau');
+		return 0;
+	}
+
 
 	while (step2 < step1) {
 		// we're on an downslope.		
