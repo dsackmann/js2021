@@ -4,6 +4,18 @@ const _notNil = (v) => v !== null && v !== undefined;
 
 const _isNil = (v) => v === null || v === undefined;  
 
+
+const _getNextUpslopeIdx = (searchSpace, startingIdx) => {
+	let i = startingIdx;
+	let step1 = searchSpace[i];
+	let step2 = searchSpace[i+1];
+	while (_notNil(step1) && step1 >= step2) {
+		i++;
+		step1 = searchSpace[i];
+		step2 = searchSpace[i+1]
+	}
+	return i;
+}
 /*
 Params: 
 	Array<Integer> searchSpace 
@@ -12,18 +24,13 @@ Params:
 */
 function peakFinder(searchSpace, startingIdx = 0, longestKnownPeak = 0) {
 
-	let i = startingIdx;
+	let i = _getNextUpslopeIdx(searchSpace, startingIdx);
 	let candidateLength = 0;
 	let step1 = searchSpace[i];
 	let step2 = searchSpace[i + 1];
 
 	if (_isNil(step1) || _isNil(step2)) {
 		return candidateLength;
-	}
-
-	if (step1 >= step2) {
-		//This isn't the beginning of an upslope. Increment starting point and move on
-		return peakFinder(searchSpace, i + 1, candidateLength)
 	}
 
 

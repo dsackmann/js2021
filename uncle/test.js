@@ -47,7 +47,7 @@ const a = getBigArray(1000, twoPeaks);
 assertEqual(peakFinder(a), 10, 'Big 1');
 
 assertEqual(peakFinder(
-		getBigArray(1000, [
+		getBigArray(100000000, [
 	{
 		start: 5,
 		contents: [1,2,3,4,5,6,5,4]
