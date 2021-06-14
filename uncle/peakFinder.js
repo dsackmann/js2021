@@ -39,17 +39,16 @@ function peakFinder(searchSpace, startingIdx = 0) {
 		step1 = searchSpace[i++];
 		step2 = searchSpace[i];
 	}
-	// We've hit a peak, a plateau, or the end of the list
 
 	if (_isNil(step2)) {
-		// case where we were on an upslope, but encountered the end of the list before a downslope began. 
-		// This does not count as a peak, so return 0 instead of the candidateLength
+		// We've reached the end of the list
+		// This does not count as a peak, so return 0 as the value for this subsequence
 		return 0;
 	}
 
 	if (step2 === step1) {		
-		// Case where there's a plateau at the peak. Increment the starting index and search the rest of the array and discard this sequence as a candidate
-		return peakFinder(searchSpace, i + 1);
+		// The sequence contained a plateau. Search the rest of the sequence with the plateau as the new starting point
+		return peakFinder(searchSpace, i);
 	}
 
 
@@ -63,7 +62,10 @@ function peakFinder(searchSpace, startingIdx = 0) {
 	}
 
 
-	return Math.max(peakFinder(searchSpace, i), candidateLength);
+	// Reached the bottom of the hill. Return either the candidate value as determined by the size of the sequence we just iterated over OR
+	// The longest peak in the remaining array, starting from the element immediately preceding the one that ended the slope
+	// (Because that element can be both the end of one peaked sequence AND the start of a new one)
+	return Math.max(peakFinder(searchSpace, i - 1), candidateLength);
 }
 
 module.exports = peakFinder;

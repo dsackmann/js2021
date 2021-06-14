@@ -76,6 +76,10 @@ assertEqual(peakFinder([1,2,3,4,5,4,3,2,2,3,4,5,6,7,8,9,10,11,12,13,14]), 8, 'Tr
 assertEqual(peakFinder([1,2,3,4,4,3,2,2,3,4,5,6,7,8,9,10,11,12,13,14]), 0, 'Tricky 12');
 assertEqual(peakFinder([1,2,3,4,3,2,2,3,4,5,6,7,8,9,10,11,12,13,14]), 6, 'Tricky 13');
 
+assertEqual(peakFinder([1,2,3,2,1,1,2,1,2,3,4,5,6,5,4,3,2,1,1,2,3,2,1]), 11, 'Tricky 14');
+
+
+assertEqual(peakFinder([1,2,2,3,4,5,6,5,4,3,2,1]), 10, 'Tricky 15');
 
 
 
