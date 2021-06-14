@@ -16,7 +16,6 @@ const assertEqual = (actual, expected, name) =>
 		if (mode !== 'warn') fail();
 }
 
-assertEqual(1, 2, 'a');
-assertEqual(1, 1, 'b');
+assertEqual(peakFinder([1,2,3,2,1]), 5);
 
 console.log('Test complete');
