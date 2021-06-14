@@ -23,7 +23,6 @@ const getBigArray = (size, subSequences =[]) => {
 		let subSeq = subSequences.find(({start, contents}) => i >= start && i < start + contents.length);
 		let val = subSeq ? subSeq.contents[i - subSeq.start] : 0; 
 
-		// if (val) console.log('Inserting ' + val + ' at position ' + i);
 		a.push(val);
 	}
 
@@ -51,15 +50,32 @@ assertEqual(peakFinder([1,2,3]), 0, 'Example 3');
 assertEqual(peakFinder([1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3]), 6, 'Example 4');
 
 
+
+assertEqual(peakFinder([]), 0, 'Empty');
+
+
+assertEqual(peakFinder([1,2,3,2,1]), 5, 'Simple 1');
+assertEqual(peakFinder([1,2,3,2,1,2,1]), 5, 'Simple 2');
+assertEqual(peakFinder([1,2,1]), 3, 'Simple 3');
+assertEqual(peakFinder([1,2]), 0, 'Simple 4');
+assertEqual(peakFinder([0,0,0,0,0]), 0, 'Simple 5');
+
+
+
 assertEqual(peakFinder([1,2,2,1]), 0, 'Tricky 1');
 assertEqual(peakFinder([1,2,1]), 3, 'Tricky 2');
 assertEqual(peakFinder([1,1,1,1]), 0, 'Tricky 3');
 assertEqual(peakFinder([1,2,1,1]), 3, 'Tricky 4');
 assertEqual(peakFinder([1,2,3,4]), 0, 'Tricky 5');
-
-
 assertEqual(peakFinder([5,4,3,2,1]), 0, 'Tricky 6');
-assertEqual(peakFinder([1,1,4,3,2,1,1]), 5, 'Tricky 7');
+assertEqual(peakFinder([-11, 13, -11, 13]), 3, 'Tricky 7');
+assertEqual(peakFinder([0,0,0,0,1]), 0, 'Tricky 8');
+assertEqual(peakFinder([1,2,3,4,5,6,6,5,4,3,2,1,2,1]), 3, 'Tricky 9');
+assertEqual(peakFinder([1,2,3,4,5,4,3,2,2,3,4,5,6,7,8,9,10,11,12,13,14,13]), 14, 'Tricky 10');
+assertEqual(peakFinder([1,2,3,4,5,4,3,2,2,3,4,5,6,7,8,9,10,11,12,13,14]), 8, 'Tricky 11');
+assertEqual(peakFinder([1,2,3,4,4,3,2,2,3,4,5,6,7,8,9,10,11,12,13,14]), 0, 'Tricky 12');
+assertEqual(peakFinder([1,2,3,4,3,2,2,3,4,5,6,7,8,9,10,11,12,13,14]), 6, 'Tricky 13');
+
 
 
 
@@ -83,13 +99,6 @@ assertEqual(peakFinder(
 
 assertEqual(peakFinder(getBigArray(10)), 0, 'Big 3');
 
-
-assertEqual(peakFinder([]), 0, 'Empty');
-
-
-assertEqual(peakFinder([1,2,3,2,1]), 5, 'Simple 1');
-assertEqual(peakFinder([1,2,3,2,1,2,1]), 5, 'Simple 2');
-assertEqual(peakFinder([1,2,1]), 3, 'Simple 3');
 
 
 console.log('Test complete');
