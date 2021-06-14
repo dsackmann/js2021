@@ -35,41 +35,33 @@ function peakFinder(searchSpace, startingIdx = 0) {
 
 	while (step2 > step1) {
 		// we're on an upslope. 
-		console.log('Upslope ' + step1 + ' ' + step2);
 		candidateLength++;
 		step1 = searchSpace[i++];
 		step2 = searchSpace[i];
 	}
 	// We've hit a peak, a plateau, or the end of the list
 
-	console.log('Peaked: ' + step1 + ' ' + step2)
 	if (_isNil(step2)) {
 		// case where we were on an upslope, but encountered the end of the list before a downslope began. 
 		// This does not count as a peak, so return 0 instead of the candidateLength
-		console.log('Ended at a peak');
 		return 0;
 	}
 
 	if (step2 === step1) {		
-		console.log('Ended at a plateau');
-
-		return peakFinder(searchSpace, i+1);
+		// Case where there's a plateau at the peak. Increment the starting index and search the rest of the array and discard this sequence as a candidate
+		return peakFinder(searchSpace, i + 1);
 	}
 
 
 
 	while (step2 < step1) {
 		// we're on an downslope.		
-		console.log('Downslope ' + step1 + ' ' + step2);
 
 		candidateLength++; 
 		step1 = searchSpace[i++];
 		step2 = searchSpace[i];
 	}
 
-	console.log('Recursive call with values: ');
-	console.log('startingIdx: ' + i);
-	console.log('candidateLength: ' + candidateLength);
 
 	return Math.max(peakFinder(searchSpace, i), candidateLength);
 }
