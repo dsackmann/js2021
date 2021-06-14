@@ -20,9 +20,8 @@ const _getNextUpslopeIdx = (searchSpace, startingIdx) => {
 Params: 
 	Array<Integer> searchSpace 
 	Integer startingIdx=0
-	Integer longestKnownPeak=0
 */
-function peakFinder(searchSpace, startingIdx = 0, longestKnownPeak = 0) {
+function peakFinder(searchSpace, startingIdx = 0) {
 
 	let i = _getNextUpslopeIdx(searchSpace, startingIdx);
 	let candidateLength = 0;
@@ -41,7 +40,7 @@ function peakFinder(searchSpace, startingIdx = 0, longestKnownPeak = 0) {
 		step1 = searchSpace[i++];
 		step2 = searchSpace[i];
 	}
-	// We've hit a peak, or the end of the list
+	// We've hit a peak, a plateau, or the end of the list
 
 	console.log('Peaked: ' + step1 + ' ' + step2)
 	if (_isNil(step2)) {
@@ -51,10 +50,12 @@ function peakFinder(searchSpace, startingIdx = 0, longestKnownPeak = 0) {
 		return 0;
 	}
 
-	if (step1 === step2) {
-		console.log('Ended at plateau');
-		return 0;
+	if (step2 === step1) {		
+		console.log('Ended at a plateau');
+
+		return peakFinder(searchSpace, i+1);
 	}
+
 
 
 	while (step2 < step1) {
@@ -70,7 +71,7 @@ function peakFinder(searchSpace, startingIdx = 0, longestKnownPeak = 0) {
 	console.log('startingIdx: ' + i);
 	console.log('candidateLength: ' + candidateLength);
 
-	return Math.max(peakFinder(searchSpace, i, candidateLength), candidateLength);
+	return Math.max(peakFinder(searchSpace, i), candidateLength);
 }
 
 module.exports = peakFinder;

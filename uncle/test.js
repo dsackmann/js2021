@@ -45,11 +45,21 @@ let twoPeaks = [
 const a = getBigArray(1000, twoPeaks);
 
 
+assertEqual(peakFinder([1, 4, 10, 2]), 4, 'Example 1');
+assertEqual(peakFinder([4, 0, 10]), 0, 'Example 2');
+assertEqual(peakFinder([1,2,3]), 0, 'Example 3');
+assertEqual(peakFinder([1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3]), 6, 'Example 4');
+
+
 assertEqual(peakFinder([1,2,2,1]), 0, 'Tricky 1');
 assertEqual(peakFinder([1,2,1]), 3, 'Tricky 2');
 assertEqual(peakFinder([1,1,1,1]), 0, 'Tricky 3');
 assertEqual(peakFinder([1,2,1,1]), 3, 'Tricky 4');
 assertEqual(peakFinder([1,2,3,4]), 0, 'Tricky 5');
+
+
+assertEqual(peakFinder([5,4,3,2,1]), 0, 'Tricky 6');
+assertEqual(peakFinder([1,1,4,3,2,1,1]), 5, 'Tricky 7');
 
 
 
